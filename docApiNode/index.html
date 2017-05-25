@@ -1,0 +1,1522 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title>Turbine Suas Vendas 5 · Documentação</title>
+    <style class="anchorjs"></style>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="data:text/css;charset=utf-8," rel="stylesheet"
+          data-href="http://getbootstrap.com/dist/css/bootstrap-theme.min.css"
+          id="bs-theme-stylesheet">
+    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src=http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js></script>
+    <![endif]-->
+
+    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script>
+    <script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="jumbotron" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+        <h1>TSV</h1>
+        <h2>Documentação de Integração</h2>
+        <p><code>versão 5.0.11.24</code></p>
+    </div>
+</div>
+
+<div class="container bs-docs-container">
+
+    <div class="row">
+
+        <div class="col-md-9" role="main">
+
+
+
+            <!--- //////////////////////////////////////////////// --->
+            <!--- ////////////////// OBJETIVOS /////////////////// --->
+            <!--- //////////////////////////////////////////////// --->
+
+            <div class="bs-docs-section">
+
+                <!--- ////////////// DESCRICAO //////////////// --->
+
+                <h1 class="page-header" id="objetivos"><a class="anchorjs-link "
+                                                             href="#objetivos"
+                                                             aria-label="objetivos"
+                                                             data-anchorjs-icon=""
+                                                             style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Objetivos</h1>
+
+                <p>Este documento tem como objetivo descrever premissas básicas para a estruturação da Campanha Turbine suas Vendas, onda 5 (TSV5). Este documento também pretende nortear a Before, administradora do Sistema Único Nacional - SUN, sobre a hierarquia de perfis de usuários e relacionamentos acessórios necessários para transformar o TSV em uma plataforma single sign-on, consumindo dados de ativação, exclusivamente do SUN.</p>
+
+                <p>Para maiores detalhes:</p>
+
+                <p><a href="assets/ESCOPO_TSV5_20161102.docx">Download do Escopo e Documento de Visão</a></p>
+
+
+
+            </div>
+
+
+
+            <!--- //////////////////////////////////////////////// --->
+            <!--- ///////////////// STAKEHOLDERS ///////////////// --->
+            <!--- //////////////////////////////////////////////// --->
+
+            <div class="bs-docs-section">
+
+                <!--- ////////////// DESCRICAO //////////////// --->
+
+                <h1 class="page-header" id="stakeholders"><a class="anchorjs-link "
+                                                          href="#stakeholders"
+                                                          aria-label="Stakeholders"
+                                                          data-anchorjs-icon=""
+                                                          style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Stakeholders</h1>
+
+                <p class="lead">Abaixo segue a descrição dos stakeholders do TSV.</p>
+
+
+                <!--- ////////////// VENDEDORES //////////////// --->
+
+                <div class="sub-section" aria-label="vendedores">
+
+                    <h2 id="stakeholders-vendedores">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-vendedores"
+                           aria-label="Link para Vendedores"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Vendedores
+                    </h2>
+
+                    <p>O vendedor deverá, obrigatoriamente, estar vinculado a uma única loja;<br/>
+                        O vendedor poderá estar vinculado a apenas um único gerente de loja;<br/>
+                        O vendedor poderá estar vinculado a apenas um único supervisor;<br/>
+                        Todos os vendedores precisam ter um Gerente de Conta vinculado;<br/>
+                        Vendedores podem ter até 2 líderes (Um gerente de loja e um supervisor).
+                    </p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            data de nascimento<br/>
+                            CNPJ do estabelecimento<br/>
+                            CPF do gerente<br/>
+                            CPF do supervisor<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/vendedores</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "dataNascimento":"1978-10-21",
+        "CNPJ":"05539219000184",
+        "CPFSupervisor":"01234567890",
+        "CPFGerente":"01234567890",
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// SUPERVISORES //////////////// --->
+
+                <div class="sub-section" aria-label="supervisores">
+
+                    <h2 id="stakeholders-supervisores">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-supervisores"
+                           aria-label="Link para Supervisores"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Supervisor de Loja
+                    </h2>
+
+                    <p>O Supervisor de Loja poderá ter em sua carteira inúmeros vendedores;<br/>
+                        O Supervisor de Loja deverá, obrigatoriamente, estar vinculado a um único estabelecimento;<br/>
+                        Todos os vendedores do supervisor deverão estar vinculados ao seu estabelecimento;<br/>
+                        Supervisor de Loja não faz venda em seu CPF;<br/>
+                        Todos os Supervisores precisam ter um Gerente de Conta vinculado.
+                    </p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            data de nascimento<br/>
+                            CNPJ do estabelecimento<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/supervisores</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "dataNascimento":"1978-10-21",
+        "CNPJ":"05539219000184",
+        "CPFGerente":"01234567890",
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// GERENTES //////////////// --->
+
+                <div class="sub-section" aria-label="gerentes">
+
+                    <h2 id="stakeholders-gerentes">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-gerentes"
+                           aria-label="Link para Gerentes"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Gerente de Loja
+                    </h2>
+
+                    <p>O gerente de loja  poderá ter em sua carteira inúmeros vendedores;<br/>
+                        O gerente deverá, obrigatoriamente, estar vinculado a um único estabelecimento;<br/>
+                        Todos os vendedores do gerente deverão estar vinculados ao seu estabelecimento;<br/>
+                        Temos Exceção na Pernambucanas, onde alguns Gerentes de Loja (GL) tem mais de um CNPJ;<br/>
+                        GL não faz venda em seu CPF;<br/>
+                        Todos os GLs precisam ter um Gerente de Conta vinculado.
+                    </p>
+
+                    <p><strong>*Próximo desenvolvimento. O GL que atende mais de um CNPJ poderá ter mais de um GC.</strong></p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            data de nascimento<br/>
+                            CNPJ do estabelecimento<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/gerentes</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "dataNascimento":"1978-10-21",
+        "CNPJ":"05539219000184",
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// COORDENADORES REGIONAIS //////////////// --->
+
+                <div class="sub-section" aria-label="coordenadores">
+
+                    <h2 id="stakeholders-coordenadores">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-coordenadores"
+                           aria-label="Link para Coordenador de Loja"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Coordenador de Loja
+                    </h2>
+
+                    <p>O Coordenador de Loja poderá ter em sua carteira inúmeros CNPJs;<br/>
+                        Todos os CNPJs do Coordenador de Loja deverão estar vinculados a uma mesma rede;<br/>
+                        O Coordenador de Loja pode ter mais de um DDD e mais de uma Regional;<br/>
+                        O Coordenador de Loja pode ter mais de um GC vinculado;<br/>
+                        Coordenador de Loja não faz venda em seu CPF.
+                    </p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            data de nascimento<br/>
+                            CNPJs dos estabelecimentos<br/>
+                            id da rede<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/coordenadores</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "dataNascimento":"1978-10-21",
+        "CNPJs":["05539219000184", "12339219000184"],
+        "idRede":1456,
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// GERENTES DE CONTA (GCS) //////////////// --->
+
+                <div class="sub-section" aria-label="gc">
+
+                    <h2 id="stakeholders-gc">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-gc"
+                           aria-label="Link para Gerentes de Conta (GCs)"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Gerentes de Conta (GCs)
+                    </h2>
+
+                    <p>Gerentes de Conta são colaboradores da Vivo responsáveis pela comunicação entre a Vivo e os vendedores, supervisores e gerentes externos, em uma determinada região. São ligados aos CNPJs das lojas que atendem, a um DDD e ao Gerente de Seção acima dele. Não participam do programa de pontos.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            DDDs de atuação<br/>
+                            territórios de atuação<br/>
+                            id do gerente de seção territorial<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/gc</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "DDDs":[11,13],
+        "territorios":[12,15],
+        "CPFSuperior": "00123456789",
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// GERENTES DE SEÇÃO TERRITORIAL (GSS) //////////////// --->
+
+                <div class="sub-section" aria-label="gs-territorial">
+
+                    <h2 id="stakeholders-gs-territorial">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-gs-territorial"
+                           aria-label="Link para Gerentes de Seção Territorial (GS)"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Gerentes de Seção Territorial (GS)
+                    </h2>
+
+                    <p>Gerentes de Seção são colaboradores da Vivo, estão acima dos GCs e são responsáveis por uma área que pode ser um DDD inteiro, parte dele, ou até áreas com mais de um DDD. São ligados ao Gerente de Divisão acima dele. Não participam do programa de pontos.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            DDDs de atuação<br/>
+                            territórios de atuação<br/>
+                            id do gerente de divisão territorial<br/>
+                            ordem de exibição<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/gs-territorial</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "DDDs":[11,13],
+        "territorios":[12,15],
+        "CPFSuperior": "00123456789",
+        "ordem":5,
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// GERENTES DE DIVISÃO TERRITORIAL (GDS) //////////////// --->
+
+                <div class="sub-section" aria-label="gd-territorial">
+
+                    <h2 id="stakeholders-gd-territorial">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-gd-territorial"
+                           aria-label="Link para Gerentes de Divisão Territorial (GD)"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Gerentes de Divisão Territorial (GD)
+                    </h2>
+
+                    <p>Gerentes de Divisão são colaboradores da Vivo, estão acima dos GSs e são responsáveis por um território. São ligados ao Gerente de Seção Nacional acima dele. Não participam do programa de pontos.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            DDDs de atuação<br/>
+                            territórios de atuação<br/>
+                            id do gerente de seção nacional<br/>
+                            ordem de exibição<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/gd-territorial</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "DDDs":[11,13],
+        "territorios":[12,15],
+        "CPFSuperior": "00123456789",
+        "ordem":5,
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// GERENTES DE SEÇÃO NACIONAL (GSS Nacional) //////////////// --->
+
+                <div class="sub-section" aria-label="gs-nacional">
+
+                    <h2 id="stakeholders-gs-nacional">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-gs-nacional"
+                           aria-label="Link para Gerentes de Seção Nacional (GS Nacional)"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Gerentes de Seção Nacional (GS Nacional)
+                    </h2>
+
+                    <p>Gerentes de Seção são colaboradores da Vivo, estão acima dos GDs e são responsáveis por uma regional. São ligados ao Gerente de Divisão Nacional acima dele. Não participam do programa de pontos.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            regional de atuação<br/>
+                            id do gerente de seção nacional<br/>
+                            ordem de exibição<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/gs-nacional</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "regional":"RJ/ES"
+        "CPFSuperior": "00123456789",
+        "ordem":5,
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// GERENTES DE DIVISÃO NACIONAL (GDS Nacional) //////////////// --->
+
+                <div class="sub-section" aria-label="gd-nacional">
+
+                    <h2 id="stakeholders-gd-nacional">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-gd-nacional"
+                           aria-label="Link para Gerentes de Divisão Nacional (GD Nacional)"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Gerentes de Divisão Nacional (GD Nacional)
+                    </h2>
+
+                    <p>Gerentes de Divisão são colaboradores da Vivo, estão acima dos GSs Nacionais e são responsáveis por um conjunto de regionais (SP - SUL - MG) e (RJ/ES - CO - N - NE). São o topo da cadeia dentro do TSV. Não participam do programa de pontos.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            regionais de atuação<br/>
+                            ordem de exibição<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/gd-nacional</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "regionais":["RJ/ES","SP","MG"]
+        "ordem":2,
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// PONTOS FOCAIS //////////////// --->
+
+                <div class="sub-section" aria-label="ponto-focal">
+
+                    <h2 id="stakeholders-ponto-focal">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-ponto-focal"
+                           aria-label="Link para Pontos Focais Regionais"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Pontos Focais Regionais
+                    </h2>
+
+                    <p>São usuários que acessam os dashboards e relatórios. Não participam do programa de pontos.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            regionais de atuação<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/ponto-focal</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "regionais":["RJ/ES","SP","MG"]
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// KAM REGIONAL //////////////// --->
+
+                <div class="sub-section" aria-label="kam-regional">
+
+                    <h2 id="stakeholders-kam-regional">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-kam-regional"
+                           aria-label="Link para KAM Regional"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>KAMs Regionais
+                    </h2>
+
+                    <p>KAMs, são os responsáveis pela rede de varejo dentro da Vivo. Os KAMs Regionais tem acesso restrito a uma ou mais regionais. Não participam do programa de pontos.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            id da rede<br/>
+                            regionais de atuação<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/kam-regional</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "idRede":343
+        "regionais":["RJ/ES","SP","MG"]
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// KAM NACIONAL //////////////// --->
+
+                <div class="sub-section" aria-label="kam-nacional">
+
+                    <h2 id="stakeholders-kam-nacional">
+                        <a class="anchorjs-link "
+                           href="#stakeholders-kam-nacional"
+                           aria-label="Link para KAM Nacional"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>KAMs Nacionais
+                    </h2>
+
+                    <p>KAMs, são os responsáveis pela rede de varejo dentro da Vivo. Não participam do programa de pontos.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CPF<br/>
+                            nome<br/>
+                            celular<br/>
+                            email<br/>
+                            id da rede<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/kam-nacional</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CPF": "01234567890",
+        "nome":"Marcio Canucci",
+        "celular":"21987654321",
+        "email":"mcanucci@gmail.com",
+        "idRede":343
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+            </div>
+
+
+
+            <!--- //////////////////////////////////////////////// --->
+            <!--- /////////////////// ESTRUTURA ////////////////// --->
+            <!--- //////////////////////////////////////////////// --->
+
+            <div class="bs-docs-section">
+
+                <!--- ////////////// DESCRICAO //////////////// --->
+
+                <h1 class="page-header" id="estrutura"><a class="anchorjs-link "
+                                                             href="#estrutura"
+                                                             aria-label="Estrutura"
+                                                             data-anchorjs-icon=""
+                                                             style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Estrutura</h1>
+
+                <p class="lead">Abaixo segue a descrição da estrutura do TSV.</p>
+
+
+                <!--- ////////////// PLANOS //////////////// --->
+
+                <div class="sub-section" aria-label="planos">
+
+                    <h2 id="estrutura-planos">
+                        <a class="anchorjs-link "
+                           href="#estrutura-planos"
+                           aria-label="Link para planos"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Planos
+                    </h2>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            id do plano<br/>
+                            nome do plano<br/>
+                            DDDs de atuação<br/>
+                            segmento<br/>
+                            agrupamento<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/planos</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "idPlano": 914,
+        "nomePlano":"Controle 69,90"
+        "DDDs":[11,12,13,14,15,16,17,18,19],
+        "segmento":"Pós",
+        "agrupamento":"Controle",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// LOJAS //////////////// --->
+
+                <div class="sub-section" aria-label="estabelecimentos">
+
+                    <h2 id="estrutura-estabelecimentos">
+                        <a class="anchorjs-link "
+                           href="#estrutura-estabelecimentos"
+                           aria-label="Link para estabelecimentos"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Estabelecimentos
+                    </h2>
+
+                    <p>O estabelecimento deverá, obrigatoriamente, estar vinculado a uma única rede;<br/>
+                    O estabelecimento deverá, obrigatoriamente, estar vinculado a um único DDD;<br/>
+                    O estabelecimento deverá, obrigatoriamente, estar vinculado a um único território;<br/>
+                    O estabelecimento deverá, obrigatoriamente, estar vinculado a um único GC;<br/>
+                    O estabelecimento poderá estar vinculado a um único coordenador de loja;<br/>
+                    O estabelecimento poderá estar vinculado a um único supervisor;<br/>
+                    O estabelecimento poderá estar vinculado a inúmeros vendedores e gerentes.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            CNPJ<br/>
+                            id da rede<br/>
+                            descrição<br/>
+                            endereço<br/>
+                            bairro<br/>
+                            cidade<br/>
+                            UF<br/>
+                            DDD de atuação<br/>
+                            Território de atuação<br/>
+                            CPF do Gerente de Contas<br/>
+                            adabas<br/>
+                            data de alteração<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/estabelecimentos</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "CNPJ":"055393485000184",
+        "idRede":233,
+        "descricao":"Icons4u Office Houses"
+        "endereco":"Av das Americas 10101",
+        "bairro":"Barra da Tijuca",
+        "cidade":"Rio de Janeiro",
+        "UF":"RJ",
+        "DDD":21,
+        "idTerritorio":5
+        "CPFGC":"01234567890",
+        "adabas":"V1V4987123",
+        "dataUpdate":"2016-04-23T18:25:43.511Z",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// REDES //////////////// --->
+
+                <div class="sub-section" aria-label="redes">
+
+                    <h2 id="estrutura-redes">
+                        <a class="anchorjs-link "
+                           href="#estrutura-redes"
+                           aria-label="Link para redes"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Redes de Varejo
+                    </h2>
+
+                    <p>Observamos que deve haver uma padronização das nomenclaturas.</p>
+
+                    <p>Podemos adotar o nome fantasia padrão.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            id da rede<br/>
+                            nome da rede<br/>
+                            programa de pontos<br/>
+                            status
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/redes</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "idRede":6,
+        "nomeRede":"Fast Shop",
+        "programa":"TSV",
+        "status":true
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// DDDS //////////////// --->
+
+                <div class="sub-section" aria-label="ddds">
+
+                    <h2 id="estrutura-ddds">
+                        <a class="anchorjs-link "
+                           href="#estrutura-ddds"
+                           aria-label="Link para ddds"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>DDDs
+                    </h2>
+
+                    <p>O DDD deverá, obrigatoriamente, estar vinculado a uma única UF;<br/>
+                    A UF deverá, obrigatoriamente, estar vinculado a uma única regional;<br/>
+                    Precisamos definir participação de parceiros nacionais. (UFOX);<br/>
+                    Regional = + de um Território e + de um DDD;<br/>
+                    Território = + de um DDD;<br/>
+                    Um DDD é sempre vinculado à um único Território;<br/>
+                    UFOX = Nacional (NAC) neste caso ela pode ter mais uma Regional, mais de um território e mais de um DDD.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            DDD<br/>
+                            UF
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/ddds</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "DDD":21,
+        "UF":"RJ"
+    }
+]
+
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// TERRITORIOS //////////////// --->
+
+                <div class="sub-section" aria-label="territorios">
+
+                    <h2 id="estrutura-territorios">
+                        <a class="anchorjs-link "
+                           href="#estrutura-territorios"
+                           aria-label="Link para territorios"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Territórios
+                    </h2>
+
+                    <p>O DDD deverá, obrigatoriamente, estar vinculado a uma única UF;<br/>
+                        A UF deverá, obrigatoriamente, estar vinculado a uma única regional;<br/>
+                        Precisamos definir participação de parceiros nacionais. (UFOX);<br/>
+                        Regional = + de um Território e + de um DDD;<br/>
+                        Território = + de um DDD;<br/>
+                        Um DDD é sempre vinculado à um único Território;<br/>
+                        UFOX = Nacional (NAC) neste caso ela pode ter mais uma Regional, mais de um território e mais de um DDD.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            id do território<br/>
+                            nome do território<br/>
+                            DDDs<br/>
+                            regional<br/>
+                            ordem de exibição
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/territorios</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "idTerritorio":6,
+        "nomeTerritorio":"22 + 24 (RJ Interior)",
+        "DDDs":[22,24],
+        "regional":"RJ/ES",
+        "ordem":41
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// REGIONAIS //////////////// --->
+
+                <div class="sub-section" aria-label="regionais">
+
+                    <h2 id="estrutura-regionais">
+                        <a class="anchorjs-link "
+                           href="#estrutura-regionais"
+                           aria-label="Link para regionais"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Regionais
+                    </h2>
+
+                    <p>O DDD deverá, obrigatoriamente, estar vinculado a uma única UF;<br/>
+                        A UF deverá, obrigatoriamente, estar vinculado a uma única regional;<br/>
+                        Precisamos definir participação de parceiros nacionais. (UFOX);<br/>
+                        Regional = + de um Território e + de um DDD;<br/>
+                        Território = + de um DDD;<br/>
+                        Um DDD é sempre vinculado à um único Território;<br/>
+                        UFOX = Nacional (NAC) neste caso ela pode ter mais uma Regional, mais de um território e mais de um DDD.</p>
+
+                    <div class="bs-callout bs-callout-warning">
+                        <h4>Dados necessários para integração</h4>
+                        <p>
+                            regional<br/>
+                            id do canal<br/>
+                            ordem de exibição
+                        </p>
+                    </div>
+
+                    <h4>Rota sugerida:</h4>
+                    <p><code>GET {url}/regionais</code></p>
+
+                    <p>&nbsp;</p>
+
+                    <h4>Resposta sugerida:</h4>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+[
+    {
+        "regional":"RJ/ES",
+        "idCanal":1,
+        "ordem":4
+    }
+]
+                            </code>
+                        </pre>
+                    </figure>
+
+                </div>
+
+            </div>
+
+
+
+            <!--- //////////////////////////////////////////////// --->
+            <!--- ///////////////////// API ////////////////////// --->
+            <!--- //////////////////////////////////////////////// --->
+
+            <div class="bs-docs-section">
+
+                <!--- ////////////// DESCRICAO //////////////// --->
+
+                <h1 class="page-header" id="API">
+                    <a class="anchorjs-link "
+                       href="#API"
+                       aria-label="Link para API"
+                       data-anchorjs-icon=""
+                       style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                    </a>API</h1>
+
+                <p class="lead">Abaixo segue a descrição que da API exposta pelo TSV para integração com o SUN.</p>
+
+                <!--- ////////////// SSO //////////////// --->
+
+                <div class="sub-section" aria-label="sso">
+
+                    <h2 id="API-sso">
+                        <a class="anchorjs-link "
+                           href="#API-sso"
+                           aria-label="Link para Single Sign On"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Single Sign On
+                    </h2>
+
+                    <p><a href="http://dev.campanhaturbinesuasvendas.com.br/hotsiteTSV5/home.html#/app/login?token=D6C2D2E83F795B7CB5FRCC51093AC7CF" target="_blank">http://dev.campanhaturbinesuasvendas.com.br/hotsiteTSV5/home.html#/app/login?token=D6C2D2E83F795B7CB5FRCC51093AC7CF</a></p>
+                    <p>Método de envio de parâmetros: <code>GET</code></p>
+                    <p>Parâmetros:<br/>
+                        &nbsp;&nbsp; <strong>token:</strong> string <span class="badge">obrigatório</span> - Ex: D6C2D2E83F795B7CB5FRCC51093AC7CF<br/>
+                    </p>
+
+                    <br/>
+                    <h4>Montagem do Token:</h4>
+                    <p><strong>Criptografia:</strong> Blowfish/ECB/NoPadding</p>
+                    <p><strong>Chave Pública:</strong> entrar em contato</p>
+                    <p><strong>Informação:</strong> "TSV5|" + CPF do cliente </p>
+
+                    <p>Exemplo:</p>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                    <pre>
+                        <code class="language-json" data-lang="JSON">
+CPF = "01234567890"
+plainKey = "SUN"
+cipher = createObject("java", "javax.crypto.Cipher")
+encryptor = Cipher.getInstance("Blowfish/ECB/NoPadding")
+keySpec = createObject("java", "javax.crypto.spec.SecretKeySpec").init(plainKey.getBytes(), "Blowfish")
+encryptor.init(Cipher.ENCRYPT_MODE, keySpec)
+encryptedTextFromJava = encryptor.doFinal(("TSV5|" + CPF).getBytes())
+resultado = BinaryEncode(encryptedTextFromJava, "HEX")
+                        </code>
+                    </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// EXTRATO DE PONTOS //////////////// --->
+
+                <div class="sub-section" aria-label="extratoPontos">
+
+                    <h2 id="API-extratoPontos">
+                        <a class="anchorjs-link "
+                           href="#API-extratoPontos"
+                           aria-label="Link para Extrato de Pontos"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Extrato de Pontos
+                    </h2>
+
+                    <p><a href="http://campanhaturbinesuasvendas.com.br/api/DAOSUN.cfc?method=extratoPontos&CPF=01234567890&token=" target="_blank">http://campanhaturbinesuasvendas.com.br/api/DAOSUN.cfc?method=extratoPontos&CPF=01234567890&token=</a></p>
+                    <p>Método de envio de parâmetros: <code>POST, GET</code></p>
+                    <p>Parâmetros:<br/>
+                        &nbsp;&nbsp; <strong>CPF:</strong> string <span class="badge">obrigatório</span> - Ex: 01234567890<br/>
+                        &nbsp;&nbsp; <strong>token:</strong> string <span class="badge">obrigatório</span> <br/>
+                    </p>
+                    <p>Resultado:</p>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                    <pre>
+                        <code class="language-json" data-lang="JSON">
+{
+    "status":{
+        "mensagem":"OK",
+        "erro":false
+    },
+    "data":{[{"dataRegistro":"10.03.2016","status":"","descricao":"Resgate de Produto | cód: 3456","pontos":-1}]}
+}                        </code>
+                    </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// SALDO DE PONTOS //////////////// --->
+
+                <div class="sub-section" aria-label="saldoPontos">
+
+                    <h2 id="API-saldoPontos">
+                        <a class="anchorjs-link "
+                           href="#API-saldoPontos"
+                           aria-label="Link para Saldo de Pontos"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Saldo de Pontos
+                    </h2>
+
+                    <p><a href="http://campanhaturbinesuasvendas.com.br/api/DAOSUN.cfc?method=saldoPontos&CPF=01234567890&token=" target="_blank">http://campanhaturbinesuasvendas.com.br/api/DAOSUN.cfc?method=saldoPontos&CPF=01234567890&token=</a></p>
+                    <p>Método de envio de parâmetros: <code>POST, GET</code></p>
+                    <p>Parâmetros:<br/>
+                        &nbsp;&nbsp; <strong>CPF:</strong> string <span class="badge">obrigatório</span> - Ex: 01234567890<br/>
+                        &nbsp;&nbsp; <strong>token:</strong> string <span class="badge">obrigatório</span> <br/>
+                    </p>
+                    <p>Resultado:</p>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                    <pre>
+                        <code class="language-json" data-lang="JSON">
+{
+    "status":{
+        "mensagem":"OK",
+        "erro":false
+    },
+    "data":{
+        "pontosAcumulados":1500,
+        "pontosUtilizados":350,
+        "saldo":1150
+    }
+}                        </code>
+                    </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// INSERIR VENDA //////////////// --->
+
+                <div class="sub-section" aria-label="inserirVenda">
+
+                    <h2 id="API-inserirVenda">
+                        <a class="anchorjs-link "
+                           href="#API-inserirVenda"
+                           aria-label="Link para Inserir Venda"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Inserir Venda
+                    </h2>
+
+                    <p><a href="http://campanhaturbinesuasvendas.com.br/api/DAOSUN.cfc?method=inserirVenda&CPF=01234567890&CPFCadastro=01234567890&idPlano=1&d0=true&fatura=1&linha=21999999999&CNPJ=10685467000176&token=" target="_blank">http://campanhaturbinesuasvendas.com.br/api/DAOSUN.cfc?method=inserirVenda&CPF=01234567890&CPFCadastro=01234567890&idPlano=1&d0=true&fatura=1&linha=21999999999&CNPJ=10685467000176&token=</a></p>
+                    <p>Método de envio de parâmetros: <code>POST, GET</code></p>
+                    <p>Parâmetros:<br/>
+                        &nbsp;&nbsp; <strong>CPF:</strong> string <span class="badge">obrigatório</span> - Ex: 01234567890<br/>
+                        &nbsp;&nbsp; <strong>CPFCadastro:</strong> string <span class="badge">obrigatório</span> - Ex: 01234567890<br/>
+                        &nbsp;&nbsp; <strong>idPlano:</strong> integer <span class="badge">obrigatório</span> - Ex: 1<br/>
+                        &nbsp;&nbsp; <strong>linha:</strong> string <span class="badge">obrigatório</span> - Ex: 21999999999<br/>
+                        &nbsp;&nbsp; <strong>CNPJ:</strong> string <span class="badge">obrigatório</span> - Ex: 10685467000176<br/>
+                        &nbsp;&nbsp; <strong>D0:</strong> boolean <span class="badge">opcional</span> - Ex: 1<br/>
+                        &nbsp;&nbsp; <strong>fatura:</strong> integer <span class="badge">opcional</span> - Ex: 1<br/>
+                        &nbsp;&nbsp; <strong>token:</strong> string <span class="badge">obrigatório</span> <br/>
+                    </p>
+                    <p>Resultado:</p>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                    <pre>
+                        <code class="language-json" data-lang="JSON">
+{
+    "status":{
+        "mensagem":"Venda cadastrada com sucesso. Aguarde validação.",
+        "erro":false
+    },
+    "data":{}
+}                        </code>
+                    </pre>
+                    </figure>
+
+                </div>
+
+                <!--- ////////////// CODIGOS DE ERRO //////////////// --->
+
+                <div class="sub-section" aria-label="erros">
+
+                    <h2 id="API-erros">
+                        <a class="anchorjs-link "
+                           href="#API-erros"
+                           aria-label="Link para Códigos de erro"
+                           data-anchorjs-icon=""
+                           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: inherit; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+                        </a>Códigos de erro
+                    </h2>
+
+                    <p>O erro contém um código presente no objeto status do JSON, detalhes poderão ser vistos abaixo:</p>
+
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <figure class="highlight">
+                    <pre>
+                        <code class="language-json" data-lang="JSON">
+{
+    "status":{
+        "mensagem":"Token inválido",
+        "erro":true,
+        <span style="color: red">"codErro":99</span>
+    },
+    "data":{}
+}                        </code>
+                    </pre>
+                    </figure>
+
+                    <p>&nbsp;</p>
+
+                    <p><span class="badge">codErro: 2</span> - "Usuário ou senha inválidos."
+                        <br/>&nbsp;&nbsp; - <em>Login incorreto com usuário vendedor/gerente.</em>
+                        <br/>&nbsp;&nbsp; - <em>Este erro acontece no app e hotsite.</em></p>
+
+                    <p>&nbsp;</p>
+
+                    <p><span class="badge">codErro: 4</span> - "Este CPF ainda não está ativo na campanha. Informe seu Gerente de Contas Vivo."
+                        <br/>&nbsp;&nbsp; - <em>O CPF informado não está na base pré-cadastrada pela vivo, o vendedor não poderá participar da campanha.</em>
+                        <br/>&nbsp;&nbsp; - <em>O Vendedor porém, poderá inserir vendas usando o formulário mais completo que contém CNPJ, e deve ser redirecionado.</em>
+                        <br/>&nbsp;&nbsp; - <em>Caso este erro aconteça na tela de envio de senha, a senha não será enviada.</em></p>
+
+                    <p>&nbsp;</p>
+
+                    <p><span class="badge">codErro: 99</span> - "Token inválido"
+                        <br/>&nbsp;&nbsp; - <em>Entre em contato com a icons4u para conseguir um token para a API.</em></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3" role="complementary">
+
+            <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs affix-top">
+                <ul class="nav bs-docs-sidenav">
+                    <li class=""><a href="#objetivos">Objetivos</a></li>
+                    <li class=""><a href="#stakeholders">Stakeholders</a>
+                        <ul class="nav">
+                            <li class=""><a href="#stakeholders-vendedores">Vendedores</a></li>
+                            <li class=""><a href="#stakeholders-supervisores">Supervisor de Loja</a></li>
+                            <li class=""><a href="#stakeholders-gerentes">Gerente de Loja</a></li>
+                            <li class=""><a href="#stakeholders-coordenadores">Coordenador de Loja</a></li>
+                            <li class=""><a href="#stakeholders-gc">Gerentes de Conta (GCs)</a></li>
+                            <li class=""><a href="#stakeholders-gs-territorial">GS Territorial</a></li>
+                            <li class=""><a href="#stakeholders-gd-territorial">GD Territorial</a></li>
+                            <li class=""><a href="#stakeholders-gs-nacional">GS Nacional</a></li>
+                            <li class=""><a href="#stakeholders-gd-nacional">GD Nacional</a></li>
+                            <li class=""><a href="#stakeholders-ponto-focal">Pontos Focais</a></li>
+                            <li class=""><a href="#stakeholders-kam-regional">KAM Regional</a></li>
+                            <li class=""><a href="#stakeholders-kam-nacional">KAM Nacional</a></li>
+                        </ul>
+                    </li>
+                    <li class=""><a href="#estrutura">Estrutura</a>
+                        <ul class="nav">
+                            <li class=""><a href="#estrutura-planos">Planos</a></li>
+                            <li class=""><a href="#estrutura-estabelecimentos">Estabelecimentos</a></li>
+                            <li class=""><a href="#estrutura-redes">Redes</a></li>
+                            <li class=""><a href="#estrutura-ddds">DDDs</a></li>
+                            <li class=""><a href="#estrutura-territorios">Territórios</a></li>
+                            <li class=""><a href="#estrutura-regionais">Regionais</a></li>
+                        </ul>
+                    </li>
+                    <li class=""><a href="#API">API</a>
+                        <ul class="nav">
+                            <li class=""><a href="#API-sso">Single Sign On</a></li>
+                            <li class=""><a href="#API-extratoPontos">Extrato de Pontos</a></li>
+                            <li class=""><a href="#API-saldoPontos">Saldo de Pontos</a></li>
+                            <li class=""><a href="#API-inserirVenda">Inserir Venda</a></li>
+                            <li class=""><a href="#API-erros">Códigos de erro</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="#top" class="back-to-top"> Voltar ao topo </a>
+            </nav>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="bs-docs-footer">
+    <div class="container">
+        <p>Icons4u inc.</p>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>window.jQuery || document.write('<script src="http://getbootstrap.com/assets/js/vendor/jquery.min.js"><\/script>')</script>
+
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
+<script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+
+<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container"
+     style="position: absolute; left: 0px; top: -9999px; width: 47px; height: 29px; z-index: 999999999;"
+     data-original-title="Copy to clipboard">
+    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="global-zeroclipboard-flash-bridge" width="100%"
+            height="100%">
+        <param name="movie" value="assets/ZeroClipboard.swf?noCache=1478784469300">
+        <param name="allowScriptAccess" value="sameDomain">
+        <param name="scale" value="exactfit">
+        <param name="loop" value="false">
+        <param name="menu" value="false">
+        <param name="quality" value="best">
+        <param name="bgcolor" value="#ffffff">
+        <param name="wmode" value="transparent">
+        <param name="flashvars"
+               value="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com">
+        <embed src="assets/ZeroClipboard.swf?noCache=1478784469300" loop="false" menu="false" quality="best"
+               bgcolor="#ffffff" width="100%" height="100%" name="global-zeroclipboard-flash-bridge"
+               allowscriptaccess="sameDomain" allowfullscreen="false" type="application/x-shockwave-flash"
+               wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer"
+               flashvars="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com"
+               scale="exactfit">
+    </object>
+</div>
+
+</body>
+
+</html>
