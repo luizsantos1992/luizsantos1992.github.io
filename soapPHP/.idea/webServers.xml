@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ce6aa39f-28ab-42a0-9217-ded6ce739c99" name="Hostinger" url="http://ftp.luizsantos1992.esy.es">
+        <fileTransfer host="ftp.luizsantos1992.esy.es" port="21" rootFolder="/public_html/">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
