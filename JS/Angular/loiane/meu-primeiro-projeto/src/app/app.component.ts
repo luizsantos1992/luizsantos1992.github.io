@@ -7,11 +7,14 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit,AfterViewChecked {
+  title:any;
+
   constructor(private titleService: Title) {
-    }
+    this.title = this.titleService;
+  }
 
   ngAfterViewChecked(){
-    this.titleService.setTitle('Teste de título');
+    this.title.setTitle('Teste de título');
   }
 
   ngOnInit(){
