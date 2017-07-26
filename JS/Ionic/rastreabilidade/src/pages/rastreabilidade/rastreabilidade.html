@@ -14,8 +14,19 @@
 
 
 <ion-content padding>
+  <button ion-button block (click)="onBarcodeScanner()">Leitor código de barras</button>
   <ion-row>
-    <img src="assets/images/qrcode.jpg">
+    <div class="text-center">
+      <p>ou</p>
+    </div>
   </ion-row>
-  <button ion-button block>Rastrear</button>
+  <ion-row> 
+    <ion-item>
+      <ion-input type="text" [(ngModel)] = "code" placeholder="Digite o código de barras"></ion-input>
+    </ion-item> 
+    <button ion-button block (click)="getCode()">Enviar</button>
+    <div [hidden]="msgErrCode.length == 0">
+      <div class="alert alert-danger" text-center>{{msgErrCode}}</div> 
+    </div>
+  </ion-row>
 </ion-content>
