@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Rastreabilidade</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>Fale Conosco</h1>
+
+  <ion-row>
+    <ion-item>
+      <ion-textarea [(ngModel)] = "mensagem" placeholder="Fale conosco"></ion-textarea>
+    </ion-item>
+    <button ion-button block (click)="sendEmail()">Enviar</button>
+  </ion-row>
+
+</ion-content>
