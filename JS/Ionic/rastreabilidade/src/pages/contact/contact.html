@@ -4,13 +4,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <h1>Contato</h1>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+<ion-content padding>
+  <h1>Fale Conosco</h1>
+
+  <ion-row>
     <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
+      <ion-textarea [(ngModel)] = "mensagem" placeholder="Fale conosco"></ion-textarea>
     </ion-item>
-  </ion-list>
+    <button ion-button block (click)="sendEmail()">Enviar</button>
+  </ion-row>
+
 </ion-content>

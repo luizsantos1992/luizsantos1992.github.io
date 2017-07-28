@@ -6,12 +6,25 @@
 
 <ion-content padding>
   <h1>Bulas</h1>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+  <ion-row>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="nomeMedicamento" placeholder="Digite o nome do medicamente"></ion-input>
+    </ion-item> 
+    <button ion-button block (click)="onSearchBula()">Buscar medicamento</button>
+  </ion-row>
+
+
+
+  <ion-card *ngFor="let medicamento of medicamentos">
+    <img src="{{medicamento.imgUrl}}"/> <!-- Criar uma imagem padrão caso ocorra erro ou demora no carregamento da imagem original -->
+    <ion-card-content>
+      <ion-card-title>
+        {{medicamento.titulo}}
+      </ion-card-title>
+      <p>
+        <a href ion-button block target="_blank" href="{{medicamento.urlBula}}">Visualizar bula</a>
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
