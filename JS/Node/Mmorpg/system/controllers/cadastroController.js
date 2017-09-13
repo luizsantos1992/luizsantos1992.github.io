@@ -20,10 +20,12 @@ module.exports.cadastrar = function(app, req, res){
 
 
     let connection = app.config.dbConnection;
-
-
+    
     let usuariosDAO = new app.system.models.usuariosDao(connection);
     usuariosDAO.inserirUsuario(dadosForm);
+
+    let jogoDAO = new app.system.models.jogoDao(connection);
+    jogoDAO.gerarParametros(dadosForm.usuario);
 
     res.send('Usuário criado com sucesso');
     
