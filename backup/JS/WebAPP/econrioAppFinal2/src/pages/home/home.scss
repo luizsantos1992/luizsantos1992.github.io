@@ -1,0 +1,26 @@
+page-home {
+    .center {
+        margin: 0 auto;
+    }
+
+    .border-qrcode {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        border: 20px solid transparent;
+        border-image: url(../assets/icon/fullscreen_grey_192x192.png) 70
+    }
+
+    .grid {
+        height: 100%;
+        justify-content: center;
+    }
+
+    #video{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%; 
+        min-height: 100%;
+    }
+}

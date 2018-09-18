@@ -1,0 +1,25 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cantagem</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content padding>
+  <ion-grid> 
+    <ion-row>
+      <ion-col>
+        <div class="border-qrcode"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer no-shadow>
+    <ion-toolbar position="bottom" text-center align-items-center>
+      <button ion-button round (click)="scanner()" *ngIf="!scannerActivite">Escanear</button>
+      <button ion-button round (click)="cancelScanner()" *ngIf="scannerActivite">Cancelar</button>
+    </ion-toolbar>
+</ion-footer>
+<video id="video"></video>
